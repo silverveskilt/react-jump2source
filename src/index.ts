@@ -15,7 +15,7 @@ export function useB2Cursor(config: B2CursorConfig) {
   const { projectDir, enabled = process.env.NODE_ENV === 'development' } = config;
 
   useEffect(() => {
-    if (!enabled) return;
+    if (!enabled || !projectDir) return;
 
     const handleClick = (e: MouseEvent) => {
       if (e.metaKey) {

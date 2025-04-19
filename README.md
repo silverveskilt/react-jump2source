@@ -5,7 +5,7 @@ A React library that enables browser-to-cursor navigation by adding `data-source
 ## Installation
 
 ```bash
-npm install b2cursor
+npm install b2cursor --save-dev
 ```
 
 ## Setup
@@ -55,15 +55,17 @@ Add the Babel plugin to your `.babelrc` or `babel.config.js`:
 1. Import and use the `useB2Cursor` hook in your app:
 
 ```tsx
-import { useB2Cursor } from 'b2cursor';
-
 function App() {
-  // Initialize b2cursor
-  useB2Cursor({ 
-    projectDir: process.env.REACT_APP_WORKSPACE_ROOT || '',
-    enabled: process.env.NODE_ENV === 'development'
-  });
-  
+  // Only import and use b2cursor in development
+  if (process.env.NODE_ENV === 'development') {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { useB2Cursor } = require('b2cursor');
+    useB2Cursor({ 
+      projectDir: config.b2cursorWorkspaceRoot || '',
+      enabled: true
+    });
+  }
+
   return (
     // Your app components
   );

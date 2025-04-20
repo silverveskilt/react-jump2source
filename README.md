@@ -1,6 +1,6 @@
 # react-jump2source
 
-A React library that enables quick navigation from the UI elements to the source code in your favourite IDE by leveraging the `data-source` attributes added to each component during development build.
+A React library that enables quick navigation from the UI elements to the source code using your favourite IDE.
 
 ## Installation
 
@@ -56,22 +56,39 @@ Add the Babel plugin to your `.babelrc` or `babel.config.js`:
 import { initJ2S } from 'react-jump2source';
 
 function App() {
-
-	// Only import and use react-jump2source in development
-	useEffect(() => {
-		if (process.env.NODE_ENV === 'development') {
-			initJ2S({
-				projectDir: process.env.REACT_APP_WORKSPACE_ROOT || '',
-				enabled: true,
-				resolver: 'cursor'
-			});
-		}
-	}, []);
+  // Only initialize react-jump2source in development
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      initJ2S({
+        projectDir: process.env.REACT_APP_WORKSPACE_ROOT || '',
+        resolver: process.env.REACT_APP_J2S_RESOLVER || 'cursor'
+      });
+    }
+  }, []);
 
   return (
     // Your app components
   );
 }
+```
+
+### Configuration Options
+
+- `projectDir` (required): Absolute path to your project's root directory. Example: /Users/John/repos/myReactApp
+- `enabled` (optional): Whether the feature is enabled. Defaults to `process.env.NODE_ENV === 'development'`
+- `resolver` (optional): How to generate the IDE URL. Can be:
+  - `'cursor'`: Uses Cursor IDE format
+  - `'vscode'`: Uses VS Code format
+  - A custom function: `(filePath: string) => string`
+
+Example of a custom resolver for using another IDEs (WebStorm, IntelliJ, etc.):
+```tsx
+useJ2S({
+  projectDir: process.env.REACT_APP_WORKSPACE_ROOT || '',
+  // The filePath argument will be in the format: components/MyComponent.tsx:32
+  // where the last number is the line number in the file
+  resolver: (filePath) => `anotherApp://openFile://${filePath}`
+});
 ```
 
 2. Set the `REACT_APP_WORKSPACE_ROOT` environment variable to your project's root directory:
@@ -83,9 +100,11 @@ REACT_APP_WORKSPACE_ROOT=/path/to/your/project
 ## Features
 
 - Automatically adds `data-source` attributes to components in development mode
-- Enables cmd+click navigation from browser to IDE
+- Enables ctrl/cmd-click navigation from browser to your preferred IDE
+- Supports multiple IDEs (Cursor, VS Code) with predefined resolvers
 - Works with Create React App and custom React projects
 - TypeScript support
+- Zero impact in production builds
 
 ## License
 

@@ -26,8 +26,8 @@ const predefinedResolvers: Record<PredefinedIDE, (filePath: string) => string> =
 export function initJ2S(config: J2SConfig) {
   const { 
     projectDir, 
-    enabled = process.env.NODE_ENV === 'development',
     resolver,
+    enabled = process.env.NODE_ENV === 'development',
   } = config;
 
   const getResolver = (): (filePath: string) => string => {

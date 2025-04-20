@@ -22,11 +22,7 @@
   ],
   "author": "Silver Veskilt",
   "license": "MIT",
-  "peerDependencies": {
-    "react": ">=16.8.0"
-  },
   "devDependencies": {
-    "@types/react": "^18.0.0",
     "typescript": "^4.9.0"
   }
 }

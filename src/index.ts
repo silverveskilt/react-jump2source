@@ -1,5 +1,3 @@
-import React, { useEffect } from 'react';
-
 type PredefinedIDE = 'cursor' | 'vscode';
 
 interface J2SConfig {
@@ -25,7 +23,7 @@ const predefinedResolvers: Record<PredefinedIDE, (filePath: string) => string> =
  * @param config.enabled Whether the feature is enabled (defaults to true in development)
  * @param config.resolver Resolver function to generate the IDE URL. 'vscode' and 'cursor' are supported shorthands.
  */
-export function useJ2S(config: J2SConfig) {
+export function initJ2S(config: J2SConfig) {
   const { 
     projectDir, 
     enabled = process.env.NODE_ENV === 'development',
@@ -39,24 +37,23 @@ export function useJ2S(config: J2SConfig) {
     return predefinedResolvers[resolver];
   };
 
-  useEffect(() => {
-    if (!enabled || !projectDir || !resolver) return;
+  if (!enabled || !projectDir || !resolver) return;
 
-    const handleClick = (e: MouseEvent) => {
-      if (e.metaKey) {
-        e.preventDefault();
-        const el = (e.target as HTMLElement).closest('[data-source]');
-        if (el) {
-          const fileInfo = el.getAttribute('data-source');
-          if (fileInfo) {
-            const filePath = `${projectDir}/src/${fileInfo}`;
-            window.location.href = getResolver()(filePath);
-          }
+  const handleClick = (e: MouseEvent) => {
+    if (e.metaKey) {
+      e.preventDefault();
+      const el = (e.target as HTMLElement).closest('[data-source]');
+      if (el) {
+        const fileInfo = el.getAttribute('data-source');
+        if (fileInfo) {
+          const filePath = `${projectDir}/src/${fileInfo}`;
+          window.location.href = getResolver()(filePath);
         }
       }
-    };
+    }
+  };
 
-    document.addEventListener('click', handleClick);
-    return () => document.removeEventListener('click', handleClick);
-  }, [enabled, projectDir, resolver, getResolver]);
+  document.addEventListener('click', handleClick);
+  return () => document.removeEventListener('click', handleClick);
 }
+

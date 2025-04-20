@@ -5,7 +5,7 @@ A React library that enables quick navigation from the elements of the UI to the
 ## Installation
 
 ```bash
-npm install jump2source --save-dev
+npm install react-jump2source --save-dev
 ```
 
 ## Setup
@@ -45,27 +45,28 @@ Add the Babel plugin to your `.babelrc` or `babel.config.js`:
 ```json
 {
   "plugins": [
-    "jump2source/babel"
+    "react-jump2source/babel"
   ]
 }
 ```
 
 ## Usage
 
-1. Import and use the `jump2source` hook in your app:
-
 ```tsx
+import { initJ2S } from 'react-jump2source';
+
 function App() {
-  // Only import and use react-jump2source in development
-  if (process.env.NODE_ENV === 'development') {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const { useJ2S } = require('react-jump2source');
-    useJ2S({ 
-      projectDir: process.env.REACT_APP_WORKSPACE_ROOT || '',
-      enabled: true,
-      resolver: 'cursor'
-    });
-  }
+
+	// Only import and use react-jump2source in development
+	useEffect(() => {
+		if (process.env.NODE_ENV === 'development') {
+			initJ2S({
+				projectDir: process.env.REACT_APP_WORKSPACE_ROOT || '',
+				enabled: true,
+				resolver: 'cursor'
+			});
+		}
+	}, []);
 
   return (
     // Your app components
@@ -82,7 +83,7 @@ REACT_APP_WORKSPACE_ROOT=/path/to/your/project
 ## Features
 
 - Automatically adds `data-source` attributes to components in development mode
-- Enables ctrl/cmd-click navigation from browser to Cursor IDE
+- Enables cmd+click navigation from browser to IDE
 - Works with Create React App and custom React projects
 - TypeScript support
 

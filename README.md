@@ -1,6 +1,6 @@
 # react-jump2source
 
-A React library that enables quick navigation from the elements of the UI to the source code by adding `data-source` attributes to components.
+A React library that enables quick navigation from the UI elements to the source code in your favourite IDE by leveraging the `data-source` attributes added to each component during development build.
 
 ## Installation
 

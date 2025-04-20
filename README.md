@@ -2,6 +2,8 @@
 
 A React library that enables quick navigation from the UI elements to the source code using your favourite IDE.
 
+![Jump to source demonstration](jump2source.gif)
+
 ## Installation
 
 ```bash

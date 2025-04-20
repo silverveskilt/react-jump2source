@@ -85,7 +85,7 @@ function App() {
 
 Example of a custom resolver for using another IDEs (WebStorm, IntelliJ, etc.):
 ```tsx
-useJ2S({
+initJ2S({
   projectDir: process.env.REACT_APP_WORKSPACE_ROOT || '',
   // The filePath argument will be in the format: components/MyComponent.tsx:32
   // where the last number is the line number in the file

@@ -1,6 +1,6 @@
 {
   "name": "react-jump2source",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A React library that enables quick navigation from the UI elements to the source code using your favourite IDE.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

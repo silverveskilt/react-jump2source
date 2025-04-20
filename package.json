@@ -1,7 +1,7 @@
 {
-  "name": "b2cursor",
+  "name": "react-jump2source",
   "version": "0.1.3",
-  "description": "A React library that enables browser-to-cursor navigation by adding data-source attributes to components",
+  "description": "A React library that enables quick navigation from the elements of the UI to the source code",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [

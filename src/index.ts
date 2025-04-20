@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 type PredefinedIDE = 'cursor' | 'vscode';
 
-interface B2CursorConfig {
+interface J2SConfig {
   projectDir: string;
   enabled?: boolean;
   /**
@@ -25,7 +25,7 @@ const predefinedResolvers: Record<PredefinedIDE, (filePath: string) => string> =
  * @param config.enabled Whether the feature is enabled (defaults to true in development)
  * @param config.resolver Resolver function to generate the IDE URL. 'vscode' and 'cursor' are supported shorthands.
  */
-export function useB2Cursor(config: B2CursorConfig) {
+export function useJ2S(config: J2SConfig) {
   const { 
     projectDir, 
     enabled = process.env.NODE_ENV === 'development',
@@ -40,7 +40,7 @@ export function useB2Cursor(config: B2CursorConfig) {
   };
 
   useEffect(() => {
-    if (!enabled || !projectDir) return;
+    if (!enabled || !projectDir || !resolver) return;
 
     const handleClick = (e: MouseEvent) => {
       if (e.metaKey) {

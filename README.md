@@ -1,11 +1,11 @@
-# b2cursor
+# react-jump2source
 
-A React library that enables browser-to-cursor navigation by adding `data-source` attributes to components.
+A React library that enables quick navigation from the elements of the UI to the source code by adding `data-source` attributes to components.
 
 ## Installation
 
 ```bash
-npm install b2cursor --save-dev
+npm install jump2source --save-dev
 ```
 
 ## Setup
@@ -22,7 +22,7 @@ npm install @craco/craco --save-dev
 module.exports = {
   babel: {
     plugins: [
-      require('b2cursor/babel')
+      require('react-jump2source/babel')
     ]
   }
 };
@@ -45,24 +45,25 @@ Add the Babel plugin to your `.babelrc` or `babel.config.js`:
 ```json
 {
   "plugins": [
-    "b2cursor/babel"
+    "jump2source/babel"
   ]
 }
 ```
 
 ## Usage
 
-1. Import and use the `useB2Cursor` hook in your app:
+1. Import and use the `jump2source` hook in your app:
 
 ```tsx
 function App() {
-  // Only import and use b2cursor in development
+  // Only import and use react-jump2source in development
   if (process.env.NODE_ENV === 'development') {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const { useB2Cursor } = require('b2cursor');
-    useB2Cursor({ 
-      projectDir: config.b2cursorWorkspaceRoot || '',
-      enabled: true
+    const { useJ2S } = require('react-jump2source');
+    useJ2S({ 
+      projectDir: process.env.REACT_APP_WORKSPACE_ROOT || '',
+      enabled: true,
+      resolver: 'cursor'
     });
   }
 

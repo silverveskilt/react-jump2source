@@ -22,6 +22,14 @@
   ],
   "author": "Silver Veskilt",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/silverveskilt/react-jump2source.git"
+  },
+  "bugs": {
+    "url": "https://github.com/silverveskilt/react-jump2source/issues"
+  },
+  "homepage": "https://github.com/silverveskilt/react-jump2source#readme",
   "devDependencies": {
     "typescript": "^4.9.0"
   }

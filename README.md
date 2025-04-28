@@ -93,10 +93,15 @@ initJ2S({
 });
 ```
 
-2. Set the `REACT_APP_WORKSPACE_ROOT` environment variable to your project's root directory:
+Set the `REACT_APP_WORKSPACE_ROOT` environment variable to your project's root directory:
 
 ```env
 REACT_APP_WORKSPACE_ROOT=/path/to/your/project
+```
+
+(optional) Use `REACT_JUMP2SOURCE_IGNORE_PATHS` environment variable to exclude certain file paths:
+```env
+REACT_JUMP2SOURCE_IGNORE_PATHS=src/components
 ```
 
 ## Features

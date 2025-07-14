@@ -34,9 +34,7 @@ module.exports = {
 ```json
 {
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test"
+    "start": "REACT_APP_J2S_WORKSPACE_ROOT=$(pwd) craco start",
   }
 }
 ```
@@ -62,7 +60,7 @@ function App() {
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
       initJ2S({
-        projectDir: process.env.REACT_APP_WORKSPACE_ROOT || '',
+        projectDir: process.env.REACT_APP_WORKSPACE_ROOT, // inject using $(pwd) during dev server start (example above)
         resolver: process.env.REACT_APP_J2S_RESOLVER || 'cursor'
       });
     }
